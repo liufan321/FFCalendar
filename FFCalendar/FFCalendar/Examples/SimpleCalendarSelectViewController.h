@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SimpleCalendarSelectViewController.h
 //  FFCalendar
 //
 //  Created by 刘凡 on 2016/7/25.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+/**
+ * 简单日历选择视图
+ */
+@interface SimpleCalendarSelectViewController : UIViewController
 
 @end
-

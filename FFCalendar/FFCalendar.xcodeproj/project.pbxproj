@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		C2BC41931D463DB800226757 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BC41921D463DB800226757 /* main.m */; };
 		C2BC41961D463DB800226757 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BC41951D463DB800226757 /* AppDelegate.m */; };
-		C2BC41991D463DB800226757 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BC41981D463DB800226757 /* ViewController.m */; };
 		C2BC419C1D463DB800226757 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2BC419A1D463DB800226757 /* Main.storyboard */; };
 		C2BC419E1D463DB800226757 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2BC419D1D463DB800226757 /* Assets.xcassets */; };
 		C2BC41A11D463DB800226757 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2BC419F1D463DB800226757 /* LaunchScreen.storyboard */; };
 		C2BC41AC1D463DB800226757 /* FFCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BC41AB1D463DB800226757 /* FFCalendarTests.m */; };
 		C2BC41B91D463F8300226757 /* FFCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BC41B81D463F8300226757 /* FFCalendarView.m */; };
+		C2BC41BC1D46425500226757 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BC41BB1D46425500226757 /* MainViewController.m */; };
+		C2BC41C01D46432400226757 /* SimpleCalendarSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BC41BF1D46432400226757 /* SimpleCalendarSelectViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,8 +33,6 @@
 		C2BC41921D463DB800226757 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C2BC41941D463DB800226757 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2BC41951D463DB800226757 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C2BC41971D463DB800226757 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C2BC41981D463DB800226757 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C2BC419B1D463DB800226757 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C2BC419D1D463DB800226757 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2BC41A01D463DB800226757 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,6 +42,10 @@
 		C2BC41AD1D463DB800226757 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2BC41B71D463F8300226757 /* FFCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFCalendarView.h; sourceTree = "<group>"; };
 		C2BC41B81D463F8300226757 /* FFCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFCalendarView.m; sourceTree = "<group>"; };
+		C2BC41BA1D46425500226757 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		C2BC41BB1D46425500226757 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		C2BC41BE1D46432400226757 /* SimpleCalendarSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleCalendarSelectViewController.h; sourceTree = "<group>"; };
+		C2BC41BF1D46432400226757 /* SimpleCalendarSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleCalendarSelectViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,11 +87,12 @@
 		C2BC41901D463DB800226757 /* FFCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				C2BC41BD1D46430A00226757 /* Examples */,
 				C2BC41B61D463DEA00226757 /* FFCalendarView */,
 				C2BC41941D463DB800226757 /* AppDelegate.h */,
 				C2BC41951D463DB800226757 /* AppDelegate.m */,
-				C2BC41971D463DB800226757 /* ViewController.h */,
-				C2BC41981D463DB800226757 /* ViewController.m */,
+				C2BC41BA1D46425500226757 /* MainViewController.h */,
+				C2BC41BB1D46425500226757 /* MainViewController.m */,
 				C2BC419A1D463DB800226757 /* Main.storyboard */,
 				C2BC419D1D463DB800226757 /* Assets.xcassets */,
 				C2BC419F1D463DB800226757 /* LaunchScreen.storyboard */,
@@ -123,6 +127,15 @@
 			);
 			path = FFCalendarView;
 			sourceTree = SOURCE_ROOT;
+		};
+		C2BC41BD1D46430A00226757 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				C2BC41BE1D46432400226757 /* SimpleCalendarSelectViewController.h */,
+				C2BC41BF1D46432400226757 /* SimpleCalendarSelectViewController.m */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -225,9 +238,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2BC41B91D463F8300226757 /* FFCalendarView.m in Sources */,
-				C2BC41991D463DB800226757 /* ViewController.m in Sources */,
+				C2BC41C01D46432400226757 /* SimpleCalendarSelectViewController.m in Sources */,
 				C2BC41961D463DB800226757 /* AppDelegate.m in Sources */,
 				C2BC41931D463DB800226757 /* main.m in Sources */,
+				C2BC41BC1D46425500226757 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
