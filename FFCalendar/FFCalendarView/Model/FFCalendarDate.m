@@ -58,7 +58,7 @@ static NSCalendar *lunarCalendar;
         _year = components.year;
         _month = components.month;
         _day = components.day;
-        _weekday = components.weekday;
+        _weekday = components.weekday - 1;
     }
     
     {
@@ -102,55 +102,122 @@ static NSCalendar *lunarCalendar;
     return [FFCalendarDate dateWithYear:_year month:_month day:(_day - 1)];
 }
 
+- (instancetype)nextWeekDate {
+    if (_date == nil) {
+        return  nil;
+    }
+    
+    return [FFCalendarDate dateWithYear:_year month:_month day:(_day + 7)];
+}
+
+- (instancetype)previousWeekDate {
+    if (_date == nil) {
+        return nil;
+    }
+    
+    return [FFCalendarDate dateWithYear:_year month:_month day:(_day - 7)];
+}
+
+- (instancetype)firstWeekday {
+    if (_date == nil) {
+        return nil;
+    }
+    
+    return [FFCalendarDate dateWithYear:_year month:_month day:_day - _weekday];
+}
+
+- (instancetype)lastWeekDay {
+    if (_date == nil) {
+        return nil;
+    }
+    
+    return [FFCalendarDate dateWithYear:_year month:_month day:(_day - _weekday + 6)];
+}
+
 #pragma mark - 类方法
 + (NSArray<NSString *> *)weekdaySymbols {
     return calendar.shortWeekdaySymbols;
 }
 
-+ (NSArray<FFCalendarDate *> *)dateArrayWithYear:(NSInteger)year month:(NSInteger)month {
-    
-    NSMutableArray *arrayM = [NSMutableArray array];
-    
-    FFCalendarDate *date = [self dateWithYear:year month:month day:1];
-    if (date == nil) {
-        return arrayM.copy;
-    }
-    
-    NSInteger offset = date.weekday - 2;
-    
-    for (NSInteger i = 0; i < 42; i++) {
-        FFCalendarDate *day = [self dateWithYear:year month:month day:(i - offset)];
-        
-        if (day == nil || (day.month != month && i > 0 && day.weekday == 1)) {
-            break;
-        }
-        [arrayM addObject:day];
-    }
-    
-    return arrayM.copy;
-}
-
-
 + (NSArray<FFCalendarDate *> *)dateArrayInWeekWithDate:(FFCalendarDate *)date {
     
     NSMutableArray *arrayM = [NSMutableArray array];
     
+    FFCalendarDate *day = [self dateWithYear:date.year month:date.month day:(date.day - date.weekday)];
+    
+    for (NSInteger i = 0; i < 7; i++) {
+        if (day == nil) {
+            break;
+        }
+        
+        [arrayM addObject:day];
+        day = day.nextDate;
+    }
+    
     return arrayM.copy;
 }
 
-+ (NSInteger)monthDifferenceBetweenDate1:(FFCalendarDate *)date1 andDate2:(FFCalendarDate *)date2 {
-    NSInteger yearDelta = date2.year - date1.year;
-    NSInteger monthDelta = date2.month - date1.month;
++ (NSArray<FFCalendarDate *> *)dateArrayInMonthWithDate:(FFCalendarDate *)date {
     
-    NSInteger delta = ABS(yearDelta) * 12 + 1;
+    NSMutableArray *arrayM = [NSMutableArray array];
     
-    if ((yearDelta < 0 && monthDelta > 0) || (yearDelta > 0 && monthDelta < 0)) {
-        delta -= ABS(monthDelta);
-    } else {
-        delta += ABS(monthDelta);
+    FFCalendarDate *firstDay = [self dateWithYear:date.year month:date.month day:1];
+    FFCalendarDate *day = [self dateWithYear:firstDay.year month:firstDay.month day:(firstDay.day - firstDay.weekday)];
+    
+    for (NSInteger i = 0; i < 42; i++) {
+        if (day == nil || (day.month != firstDay.month && i > 0 && day.weekday == 0)) {
+            break;
+        }
+        
+        [arrayM addObject:day];
+        day = day.nextDate;
     }
     
-    return delta;
+    return arrayM.copy;
+}
+
++ (NSArray<FFCalendarDate *> *)dateArrayWithYear:(NSInteger)year month:(NSInteger)month {
+    
+    FFCalendarDate *firstDay = [self dateWithYear:year month:month day:1];
+    
+    return [self dateArrayInMonthWithDate:firstDay];
+}
+
++ (NSInteger)weekDifferenceBetweenDate1:(FFCalendarDate *)date1 andDate2:(FFCalendarDate *)date2 {
+    
+    FFCalendarDate *firstDay = nil;
+    FFCalendarDate *lastDate = nil;
+    
+    if ([date1.date compare:date2.date] == NSOrderedAscending) {
+        firstDay = date1.firstWeekday;
+        lastDate = date2.lastWeekDay;
+    } else {
+        firstDay = date2.firstWeekday;
+        lastDate = date1.lastWeekDay;
+    }
+    
+    NSDateComponents *components = [calendar components:NSCalendarUnitDay fromDate:firstDay.date toDate:lastDate.date options:0];
+    
+    return (components.day + 1) / 7;
+}
+
++ (NSInteger)monthDifferenceBetweenDate1:(FFCalendarDate *)date1 andDate2:(FFCalendarDate *)date2 {
+    
+    FFCalendarDate *firstDay = nil;
+    FFCalendarDate *lastDate = nil;
+    
+    if ([date1.date compare:date2.date] == NSOrderedAscending) {
+        firstDay = date1;
+        lastDate = date2;
+    } else {
+        firstDay = date2;
+        lastDate = date1;
+    }
+    
+    NSInteger yearDelta = lastDate.year - firstDay.year;
+    NSInteger monthDelta = lastDate.month - firstDay.month;
+    
+    return yearDelta * 12 + monthDelta + 1;
 }
 
 @end

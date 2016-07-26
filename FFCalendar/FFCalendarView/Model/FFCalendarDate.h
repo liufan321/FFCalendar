@@ -33,6 +33,26 @@
  */
 - (nullable instancetype)previousDate;
 
+/**
+ * 当前日期递增一周的日期
+ */
+- (nullable instancetype)nextWeekDate;
+
+/**
+ * 当前日期递减一周的日期
+ */
+- (nullable instancetype)previousWeekDate;
+
+/**
+ * 当前日期所在周的第一天
+ */
+- (nullable instancetype)firstWeekday;
+
+/**
+ * 当前日期所在周的最后一天
+ */
+- (nullable instancetype)lastWeekDay;
+
 #pragma mark - 类方法
 /**
  * 星期符号数组
@@ -40,23 +60,42 @@
 + (nonnull NSArray<NSString *> *)weekdaySymbols;
 
 /**
- * 一个完整月的日期数组
- *
- * @param year  年
- * @param month 月
- *
- * @return 完整月的日期数组，包含当月第一天和最后一天所在星期的完整日期记录
- */
-+ (nonnull NSArray<FFCalendarDate *> *)dateArrayWithYear:(NSInteger)year month:(NSInteger)month;
-
-/**
  * 指定日期所在周的完整日期数组
  *
  * @param date 日期
  *
- * @return 日期数组，包含非本月的日期
+ * @return 日期数组，数组首位包含非本月的日期
  */
 + (nonnull NSArray<FFCalendarDate *> *)dateArrayInWeekWithDate:(nonnull FFCalendarDate *)date;
+
+/**
+ * 指定日期所在月的完整日期数组
+ *
+ * @param date 日期
+ *
+ * @return 日期数组，数组首位包含非本月的日期
+ */
++ (nonnull NSArray<FFCalendarDate *> *)dateArrayInMonthWithDate:(nonnull FFCalendarDate *)date;
+
+/**
+ * 指定年月的完整日期数组
+ *
+ * @param year  年
+ * @param month 月
+ *
+ * @return 日期数组，数组首位包含非本月的日期
+ */
++ (nonnull NSArray<FFCalendarDate *> *)dateArrayWithYear:(NSInteger)year month:(NSInteger)month;
+
+/**
+ * 计算两个日期之间的星期差值
+ *
+ * @param date1 日期1
+ * @param date2 日期2
+ *
+ * @return 星期差值的绝对值
+ */
++ (NSInteger)weekDifferenceBetweenDate1:(nonnull FFCalendarDate *)date1 andDate2:(nonnull FFCalendarDate *)date2;
 
 /**
  * 计算两个日期之间的月度差值
